@@ -27,7 +27,7 @@ public class DelivaryTypeDisplayController : MonoBehaviour
 
         titleText.text = Constants.DELIVARY_TYPE;
         
-        StartCoroutine(DisplayScreen());
+        //StartCoroutine(DisplayScreen());
     }
 
     public void EnableScoreDisaplay(Action callback, string result, int score, int wickets, int ballsRemaining)
@@ -45,14 +45,20 @@ public class DelivaryTypeDisplayController : MonoBehaviour
 
         titleText.text = "";
 
-        StartCoroutine(DisplayScreen());
+        //StartCoroutine(DisplayScreen());
     }
-    IEnumerator DisplayScreen()
-    {
-        yield return new WaitForSeconds(3f);
+
+    public void OnClickOfOK() {
         Reset();
         displayCompletionCallback();
     }
+
+   /* IEnumerator DisplayScreen()
+    {
+        yield return new WaitForSeconds(3f);
+        
+    }
+   */
 
     private void Reset()
     {
