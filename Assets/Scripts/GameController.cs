@@ -15,12 +15,16 @@ public class GameController : MonoBehaviour
 
     [SerializeField]
     private TextMeshProUGUI resultText;
+    [SerializeField]
+    private GameObject mainCanvasGO;
 
     private BowlerSelectionController bowlerSelectionController;
     private PitchRegionSelectionController pitchRegionSelectionController;
     private DelivaryTypeDisplayController delivaryTypeDisplayController;
     private RunsSelectionController runsSelectionController;
 
+    [SerializeField]
+    private BallDelivaryController ballDelivaryController;
     #endregion
 
     #region Variables
@@ -160,7 +164,7 @@ public class GameController : MonoBehaviour
     {
         selectedRuns = runs;
         runsSelectionGO.SetActive(false);
-        EnableResult();
+        DeliverBall();
     }
     #endregion
 
@@ -219,8 +223,21 @@ public class GameController : MonoBehaviour
     }
     #endregion
 
+    #region BALL DELIVARY SIMULATION
+    private void DeliverBall() 
+    {
+        mainCanvasGO.SetActive(false);
+        ballDelivaryController.DeliverBall(OnCompletionOfBallDelivery);
+    }
+    private void OnCompletionOfBallDelivery()
+    {
+        mainCanvasGO.SetActive(true);
+        EnableResult();
+    }
+    #endregion
+
     #region RESET
-    private void reset() 
+        private void reset() 
     {
         score = 0;
         ballsRemianing = Constants.TOTAL_BALLS;
